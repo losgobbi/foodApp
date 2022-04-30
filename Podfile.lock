@@ -1,0 +1,31 @@
+PODS:
+  - Alamofire (3.1.2)
+  - Crashlytics (3.4.1):
+    - Fabric (~> 1.6.0)
+  - Eureka (1.5.0)
+  - Fabric (1.6.1)
+  - KeychainAccess (2.3.2)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SwiftyJSON (2.3.1)
+
+DEPENDENCIES:
+  - Alamofire (= 3.1.2)
+  - Crashlytics (= 3.4.1)
+  - Eureka (= 1.5.0)
+  - Fabric (= 1.6.1)
+  - KeychainAccess (= 2.3.2)
+  - SDWebImage (= 3.7.6)
+  - SwiftyJSON (= 2.3.1)
+
+SPEC CHECKSUMS:
+  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
+  Crashlytics: 41574a245bc6ae10c55d57f385ebd2004e5bee05
+  Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
+  Fabric: bf0ceb04e7c924090efc5f8c55e4fbcca189e0a0
+  KeychainAccess: 96575483583f4640739a5cc26551803d0d34e0dd
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
+
+COCOAPODS: 0.39.0

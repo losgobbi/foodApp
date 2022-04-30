@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
+    <entity name="Address" representedClassName="FoodApp.Address" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" defaultValueString="Endereço indisponível." syncable="YES"/>
+        <attribute name="addressForCharge" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" defaultValueString="Cidade indisponível." syncable="YES"/>
+        <attribute name="complement" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="neighborhood" optional="YES" attributeType="String" defaultValueString="Bairro indisponível." syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" defaultValueString="Estado indisponível." syncable="YES"/>
+        <attribute name="zipcode" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <relationship name="addressCache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="addressCache" inverseEntity="Address" syncable="YES"/>
+        <relationship name="addressClient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="clientAddress" inverseEntity="Client" syncable="YES"/>
+        <relationship name="addressDelivery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeliveryProvider" inverseName="deliveryAddress" inverseEntity="DeliveryProvider" syncable="YES"/>
+    </entity>
+    <entity name="Cache" representedClassName="FoodApp.Cache" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="cacheAddress" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Address" syncable="YES"/>
+        <relationship name="cacheCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="categoryCache" inverseEntity="Category" syncable="YES"/>
+        <relationship name="cacheLine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Line" inverseName="lineCache" inverseEntity="Line" syncable="YES"/>
+        <relationship name="cacheProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="productCache" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName="FoodApp.Category" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="categoryCache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cache" inverseName="cacheCategory" inverseEntity="Cache" syncable="YES"/>
+        <relationship name="categoryProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="productCategory" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Characteristic" representedClassName="FoodApp.Characteristic" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="characteristicProduct" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="productCharacteristic" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Client" representedClassName="FoodApp.Client" syncable="YES">
+        <attribute name="birthday" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cellPhone" optional="YES" transient="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <attribute name="cpf" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" transient="YES" attributeType="String" defaultValueString="E-mail indisponível." syncable="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String" defaultValueString="Nome indisponível." syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastOrderTime" optional="YES" attributeType="Date" defaultDateTimeInterval="-978249600" syncable="YES"/>
+        <attribute name="login" optional="YES" attributeType="String" defaultValueString="Login indisponível." syncable="YES"/>
+        <attribute name="newsletter" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="password" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="residentialPhone" optional="YES" transient="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <attribute name="syncTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="vendor" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="clientAddress" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Address" inverseName="addressClient" inverseEntity="Address" syncable="YES"/>
+        <relationship name="clientBookMarks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="productClientBookMarks" inverseEntity="Product" syncable="YES"/>
+        <relationship name="clientOrder" optional="YES" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="orderClient" inverseEntity="Order" syncable="YES"/>
+        <relationship name="clientProductList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="productClientProductList" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="DeliveryForm" representedClassName="FoodApp.DeliveryForm" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="deliveryFormDeliveryProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeliveryProvider" inverseName="deliveryForm" inverseEntity="DeliveryProvider" syncable="YES"/>
+        <relationship name="deliveryFormOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="orderDeliveryForm" inverseEntity="Order" syncable="YES"/>
+    </entity>
+    <entity name="DeliveryProvider" representedClassName="FoodApp.DeliveryProvider" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="Nome indisponível." syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <attribute name="vendor" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="deliveryAddress" maxCount="1" deletionRule="Nullify" destinationEntity="Address" inverseName="addressDelivery" inverseEntity="Address" syncable="YES"/>
+        <relationship name="deliveryForm" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DeliveryForm" inverseName="deliveryFormDeliveryProvider" inverseEntity="DeliveryForm" syncable="YES"/>
+        <relationship name="deliveryImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="imageProvider" inverseEntity="Image" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="FoodApp.Image" syncable="YES">
+        <attribute name="dir" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expectedSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="file" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="format" optional="YES" attributeType="String" defaultValueString="Formato não conhecido." syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="local" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="path" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="sizeBytes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stringIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uploadedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="imageLine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Line" inverseName="lineImage" inverseEntity="Line" syncable="YES"/>
+        <relationship name="imageProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="productImage" inverseEntity="Product" syncable="YES"/>
+        <relationship name="imageProvider" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeliveryProvider" inverseName="deliveryImage" inverseEntity="DeliveryProvider" syncable="YES"/>
+    </entity>
+    <entity name="Ingredient" representedClassName="FoodApp.Ingredient" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ingredientProduct" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Product" inverseName="productIngredient" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Line" representedClassName="FoodApp.Line" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" defaultValueString="Descrição indisponível." syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="Nome indisponível." syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="stopDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="syncedProducts" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="vendor" optional="YES" attributeType="Transformable" valueTransformerName="" syncable="YES"/>
+        <relationship name="lineCache" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Cache" inverseName="cacheLine" inverseEntity="Cache" syncable="YES"/>
+        <relationship name="lineImage" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Image" inverseName="imageLine" inverseEntity="Image" syncable="YES"/>
+        <relationship name="lineProductList" toMany="YES" deletionRule="Cascade" destinationEntity="Product" inverseName="productLine" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Lot" representedClassName="FoodApp.Lot" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lotProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="productLot" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="MetaData" representedClassName=".MetaData" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="current" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="limit" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="nextPage" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="page" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pageCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Order" representedClassName="FoodApp.Order" syncable="YES">
+        <attribute name="addInfo" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" transient="YES" attributeType="Date" defaultDateTimeInterval="-978249600" syncable="YES"/>
+        <attribute name="deliveryAddressId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="discountInfo" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pay" optional="YES" transient="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" transient="YES" attributeType="Date" defaultDateTimeInterval="-978249600" syncable="YES"/>
+        <relationship name="orderClient" optional="YES" transient="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="clientOrder" inverseEntity="Client" syncable="YES"/>
+        <relationship name="orderDeliveryForm" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeliveryForm" inverseName="deliveryFormOrder" inverseEntity="DeliveryForm" syncable="YES"/>
+    </entity>
+    <entity name="Packing" representedClassName="FoodApp.Packing" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="packingProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="productPacking" inverseEntity="Product" syncable="YES"/>
+    </entity>
+    <entity name="Product" representedClassName="FoodApp.Product" syncable="YES">
+        <attribute name="attrs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" defaultValueString="Descrição indisponível." syncable="YES"/>
+        <attribute name="discount" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="discountPrice" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="fullDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="Nome indisponível." syncable="YES"/>
+        <attribute name="obs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="productListCount" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="100" defaultValueString="0" syncable="YES"/>
+        <attribute name="rate" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="vendor" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="productCache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cache" inverseName="cacheProduct" inverseEntity="Cache" syncable="YES"/>
+        <relationship name="productCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="categoryProduct" inverseEntity="Category" syncable="YES"/>
+        <relationship name="productCharacteristic" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Characteristic" inverseName="characteristicProduct" inverseEntity="Characteristic" syncable="YES"/>
+        <relationship name="productClientBookMarks" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="clientBookMarks" inverseEntity="Client" syncable="YES"/>
+        <relationship name="productClientProductList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="clientProductList" inverseEntity="Client" syncable="YES"/>
+        <relationship name="productImage" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Image" inverseName="imageProduct" inverseEntity="Image" syncable="YES"/>
+        <relationship name="productIngredient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient" inverseName="ingredientProduct" inverseEntity="Ingredient" syncable="YES"/>
+        <relationship name="productLine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Line" inverseName="lineProductList" inverseEntity="Line" syncable="YES"/>
+        <relationship name="productLot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lot" inverseName="lotProduct" inverseEntity="Lot" syncable="YES"/>
+        <relationship name="productPacking" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Packing" inverseName="packingProduct" inverseEntity="Packing" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Address" positionX="-90" positionY="299" width="128" height="225"/>
+        <element name="Cache" positionX="-648" positionY="383" width="128" height="148"/>
+        <element name="Category" positionX="-378" positionY="-324" width="128" height="118"/>
+        <element name="Characteristic" positionX="-227" positionY="-0" width="128" height="88"/>
+        <element name="Client" positionX="-405" positionY="-648" width="128" height="300"/>
+        <element name="DeliveryForm" positionX="-101" positionY="153" width="128" height="178"/>
+        <element name="DeliveryProvider" positionX="-407" positionY="341" width="128" height="148"/>
+        <element name="Image" positionX="-684" positionY="99" width="128" height="253"/>
+        <element name="Ingredient" positionX="-281" positionY="173" width="128" height="88"/>
+        <element name="Line" positionX="-459" positionY="117" width="128" height="208"/>
+        <element name="Lot" positionX="-362" positionY="-144" width="128" height="88"/>
+        <element name="MetaData" positionX="-621" positionY="-576" width="128" height="148"/>
+        <element name="Order" positionX="-126" positionY="-198" width="128" height="180"/>
+        <element name="Packing" positionX="-38" positionY="-9" width="128" height="88"/>
+        <element name="Product" positionX="-657" positionY="-378" width="189" height="403"/>
+    </elements>
+</model>
